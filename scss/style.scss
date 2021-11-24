@@ -1,0 +1,198 @@
+$Desaturated-Red: hsl(0, 36%, 70%);
+$Soft-Red: hsl(0, 93%, 68%);
+$Dark-Grayish-Red: hsl(0, 6%, 24%);
+$Linear-1: linear-gradient(hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+$Linear-2: linear-gradient(to right,hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+$Font-Default: 16px;
+$Font-Josefin: 'Josefin Sans',
+sans-serif; //300,400,600
+
+@mixin for-desktop-only {
+    @media screen and (min-width:900px) {
+        @content
+    }
+}
+
+.container {
+    background-color: $Linear-1;
+    width: 100%;
+    max-width: 778px;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include for-desktop-only() {
+        max-width: 1440px;
+        justify-content: center;
+    }
+
+    .content {
+        display: grid;
+        grid-template-areas:
+            "logo"
+            "banner"
+            "conteudo"
+            "formulario";
+
+
+        @include for-desktop-only() {
+            grid-template-areas:
+                "logo banner"
+                "conteudo banner"
+                "formulario banner";
+            grid-template-rows: 80px 1fr 100px;
+            grid-template-columns: 500px 1fr;
+            background: hsl(0, 100%, 98%) url(../images/bg-pattern-desktop.svg) no-repeat bottom left / contain;
+            padding-left: 50px;
+        }
+
+        .nav {
+            grid: logo;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            @include for-desktop-only(){  
+                justify-content: flex-start;
+            }
+
+            &__img {
+                margin-left: 30px;
+            }
+        }
+
+        .image {
+            grid: banner;
+            width: 100%;
+            height: 250px;
+
+            @include for-desktop-only() {
+                width: 410px;
+                height: 600px;
+            }
+
+            &__img {
+                background: url(../images/hero-mobile.jpg) no-repeat top center / cover;
+                width: 100%;
+                height: 100%;
+
+                @include for-desktop-only() {
+                    background: url(../images/hero-desktop.jpg) no-repeat top center / cover;
+                    min-width: 305px;
+                    min-height: 400px;
+                }
+            }
+        }
+
+        .main {
+            grid: conteudo;
+            margin: 50px 40px;
+            text-align: center;
+
+            @include for-desktop-only(){
+                text-align: left;
+            }
+
+            &__title{
+                font-size: 44px;
+                font-family: $Font-Josefin;
+                font-weight: 600;
+                text-transform: uppercase;
+                text-align: center;
+                width: 250px;
+                margin: 0 auto;
+                letter-spacing: 10px;
+                line-height: 50px;
+
+                @include for-desktop-only(){
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+
+            &__title > span{
+                font-weight: 100;
+                color: $Desaturated-Red;
+            }
+
+            &__text{
+                font-family: $Font-Josefin;
+                font-size: $Font-Default;
+                color: $Desaturated-Red;
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+
+                @include for-desktop-only(){
+                    width: 90%;  
+                    line-height: 30px;  
+                }
+            }
+        }
+
+        .form {
+            border: 1px solid hsl(0, 80%, 90%);
+            border-radius: 50px;
+            grid: formulario;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            input[type=email]{
+                border: none;
+                background-color: transparent;
+                font-family: $Font-Josefin;
+                color: hsl(0, 80%, 86%);
+                margin-left: 20px;
+                width: 90%;
+            }
+
+            input[type=email]:focus, input[type=submit]:focus{
+                border: none;
+                outline: 0;
+            }
+
+            input[type=submit]{
+                width: 65px;
+                border-radius: 50px;
+                border: none;
+                height: 40px;
+                cursor: pointer;
+                background: hsl(0, 74%, 74%) url(../images/icon-arrow.svg) no-repeat center center / 12px;
+                box-shadow: 0px 1px 10px hsl(0, 74%, 74%);
+
+            }
+
+            @include for-desktop-only(){
+                width: 90%;
+                align-items: center;
+            }
+        }
+
+        .invalido{
+            border: 2px solid hsl(0, 100%, 50%);
+        }
+
+        .valido{
+            border: 2px solid hsl(120, 83%, 73%);
+        }
+
+    }
+
+    .footer {
+
+        &__attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        &__attribution a {
+            color: hsl(228, 45%, 44%);
+        }
+    }
+
+}
